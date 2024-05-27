@@ -14,7 +14,7 @@ export function buildWebpackConfig(
     mode,
     entry: paths.entry,
     output: {
-      filename: "[name].js",
+      filename: "[name].[contenthash].js",
       path: paths.build,
       clean: true,
     },
@@ -23,7 +23,7 @@ export function buildWebpackConfig(
     module: {
       rules: buildLoaders(option),
     },
-    resolve: buildResolve(),
+    resolve: buildResolve(option),
     devtool: isDev ? "inline-source-map" : undefined,
     devServer: isDev ? builDevServer(option) : undefined,
   };

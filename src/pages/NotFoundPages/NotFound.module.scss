@@ -1,0 +1,10 @@
+.PageLoader {
+  min-height: 300px;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  color: (var(--inverted-bg-color));
+  height: 100%;
+}
