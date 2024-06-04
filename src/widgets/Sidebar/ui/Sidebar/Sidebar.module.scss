@@ -6,7 +6,50 @@
   transition: width 0.3s;
 
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+.switchers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.collapsedBtn {
+  position: absolute;
+  right: -40px;
+  bottom: 80px;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+}
+.link {
+  margin-left: 10px;
+  opacity: 1;
+}
+
+.icon {
+  fill: var(--primary-color);
+}
+
 .collapsed {
   width: 80px;
+
+  .link {
+    opacity: 0;
+    width: 0;
+    transition: 0.2s opasity;
+  }
 }

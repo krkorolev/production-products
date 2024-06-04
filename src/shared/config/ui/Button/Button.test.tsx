@@ -7,4 +7,9 @@ describe("Button", () => {
     expect(screen.getByText("TEST")).toHaveClass('clear');
     screen.debug()
   });
+  test("test", () => {
+    render(<Button>TEST</Button>);
+    expect(screen.getByText("TEST")).toBeInTheDocument();
+  });
 });
+ 

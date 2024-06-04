@@ -1,23 +1,35 @@
 import { classNames } from "helpers/classNames/classNames";
-import * as React from "react";
 import cls from "./Navbar.module.scss";
-import { AppLink, AppLinkTheme } from "shared/config/ui/AppLink/AppLink";
-import { ThemeSwitch } from "shared/config/ui";
+import { Button, Modal } from "shared/config/ui";
+import { useTranslation } from "react-i18next";
+import { useCallback, useState } from "react";
+import { ThemeButton } from "shared/config/ui/Button/Button";
+import { LoginModal } from "features/AuthByUsername/ui/LoginModal/LoginModal";
 
 interface NavparProps {
   className?: string;
 }
 
 export const Navbar = ({ className }: NavparProps) => {
+  const { t } = useTranslation();
+  const [isAuthModal, setIsAuthModal] = useState(false);
+
+  const onCloseModal = useCallback(() => {
+    setIsAuthModal(false);
+  }, []);
+  const onSnowModal = useCallback(() => {
+    setIsAuthModal(true);
+  }, []);
   return (
     <div className={classNames(cls.navbar)}>
-      <ThemeSwitch/>
-      <AppLink to={"/"} theme={AppLinkTheme.PRIMARY}>
-        Главная
-      </AppLink>
-      <AppLink to={"/about"} theme={AppLinkTheme.SECONDARY}>
-        О нас
-      </AppLink>
+      <Button
+        theme={ThemeButton.OUTLINE}
+        className={cls.links}
+        onClick={onSnowModal}
+      >
+        {t("Войти")}
+      </Button>
+      <LoginModal isOpen={isAuthModal} isClose={onCloseModal} />
     </div>
   );
 };

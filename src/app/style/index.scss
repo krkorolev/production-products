@@ -2,6 +2,7 @@
 @import "./themes/dark";
 @import "./themes/normal";
 @import "./reset.scss";
+@import "../../shared/config/ui/Modal/Modal.module.scss";
 
 * {
   margin: 0;
@@ -9,11 +10,14 @@
   box-sizing: border-box;
 }
 
+body {
+  font-size: 25px;
+  color: var(--primary-color);
+}
+
 .app {
-  font-size: var(--font-size-m);
-  background: var(--backgound-color-main);
-  color: var(--color);
-  min-height: 100vh;
+    background: var(--bg-color);
+    min-height: 100vh;
 }
 
 .main-page {
