@@ -7,14 +7,14 @@ describe("getLoginIsLoading", () => {
     const state: DeepPartial<StateSchema> = {
       login: {
         isLoading: true,
+        password: "",
+        username: "",
       },
     };
     expect(getLoginIsLoading(state as StateSchema)).toEqual(true);
   });
   test("return false", () => {
-    const state: DeepPartial<StateSchema> = {
-
-    };
+    const state: DeepPartial<StateSchema> = {};
     expect(getLoginIsLoading(state as StateSchema)).toEqual(false);
   });
 });

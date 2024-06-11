@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ThunkConfig } from "app/providers/storeProvider";
+import { ThunkExtraArg } from "app/providers/storeProvider/config/StateSchema";
 import { User } from "entities/User";
 import { setAuthData } from "entities/User/model/slice/userSlice";
 import { USER_LOCAL_STORAGE_KEY } from "shared/const/localstorage";
@@ -26,7 +27,7 @@ export const loginByUserName = createAsyncThunk<
         JSON.stringify(response.data)
       );
       dispatch(setAuthData(response.data));
-      extra.navigate("/about");
+      // extra?.navigate("/about");
       return response.data;
     } catch (error) {
       return rejectWithValue("Вы ввели неправильный логин или пароль");

@@ -1,13 +1,13 @@
 import counterSlice from "entities/Counter/model/slice/counterSlice";
 import userSlice from "entities/User/model/slice/userSlice";
 import LoginSlice from "features/AuthByUsername/model/slice/LoginSlice";
-
-import { StateSchema } from "./StateSchema";
-import { ReducersMapObject, configureStore } from "@reduxjs/toolkit";
+import { StateSchema, ThunkExtraArg } from "./StateSchema";
+import { CombinedState, ReducersMapObject, configureStore } from "@reduxjs/toolkit";
 import { createReducerManager } from "./reducerManager";
 import { useDispatch } from "react-redux";
 import { $api } from "shared/api/api";
 import { NavigateOptions, To } from "react-router-dom";
+import { Reducer } from "react";
 
 export function createReduxStore(
   initialState?: StateSchema,
@@ -21,18 +21,20 @@ export function createReduxStore(
     // login: LoginSlice,
   };
   const reducerManager = createReducerManager(rootReducer);
+  const extraArg: ThunkExtraArg = {
+    api: $api,
+    navigate,
+  };
 
   const store = configureStore({
-    reducer: reducerManager.reduce,
+    //@ts-ignore
+    reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
     devTools: __IS__DEV__,
     preloadedState: initialState,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         thunk: {
-          extraArgument: {
-            api: $api,
-            navigate,
-          },
+          extraArgument: extraArg,
         },
       }),
   });

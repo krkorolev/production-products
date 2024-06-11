@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { classNames } from "helpers/classNames/classNames";
+import { Mods, classNames } from "helpers/classNames/classNames";
 import { ReactNode } from "react";
 import { Portal } from "../Portal/Portal";
 import cls from "./Modal.module.scss";
@@ -18,12 +18,12 @@ export const Modal: React.FC<ModalProps> = (props) => {
   const { className, children, lazy, isOpen, isClose } = props;
   const { theme } = useTheme();
 
-  const mods: Record<string, boolean> = {
+  const mods: Mods = {
     [cls.oppend]: isOpen,
   };
   const [isClosing, setIsClosing] = React.useState(false);
   const [isMounted, setIsMounted] = React.useState(false);
-  const timerRef = React.useRef<ReturnType<typeof setTimeout>>();
+  const timerRef = React.useRef() as React.MutableRefObject<ReturnType<typeof setTimeout>>;
 
   const keyDown = React.useCallback((e: KeyboardEvent) => {
     console.log("keyDown");

@@ -4,7 +4,7 @@ import { USER_LOCAL_STORAGE_KEY } from "shared/const/localstorage";
 const baseURL = __IS__DEV__ ? "http://localhost:8000" : "https://production.ru";
 
 export const $api = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL,
   headers: {
     authorization: localStorage.getItem(USER_LOCAL_STORAGE_KEY) || "",
   },

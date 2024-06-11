@@ -1,5 +1,5 @@
 import * as React from "react";
-import { classNames } from "../../../../helpers/classNames/classNames";
+import { Mods, classNames } from "../../../../helpers/classNames/classNames";
 import cls from "./Button.module.scss";
 import { ButtonHTMLAttributes, FC } from "react";
 
@@ -31,10 +31,10 @@ export const Button: FC<ButtonProps> = (props) => {
     square,
     size = SizeButton.XL,
     disabled,
-    theme,
+    theme = ThemeButton.OUTLINE,
     ...otherProps
   } = props;
-  const mods: Record<string, boolean> = {
+  const mods: Mods = {
     [cls[theme]]: true,
     [cls.square]: square,
     [cls[size]]: true,
