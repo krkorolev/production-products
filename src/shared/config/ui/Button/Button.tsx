@@ -6,7 +6,7 @@ import { ButtonHTMLAttributes, FC } from "react";
 export enum ThemeButton {
   CLEAR = " clear",
   BACKGROUND = "background",
-  OUTLINE = 'outline',
+  OUTLINE = "outline",
   BACKGROUND_INVERTED = "backgroundInverted",
 }
 
@@ -21,6 +21,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   theme?: ThemeButton;
   square?: boolean;
   size?: SizeButton;
+  disabled?: boolean;
 }
 
 export const Button: FC<ButtonProps> = (props) => {
@@ -29,6 +30,7 @@ export const Button: FC<ButtonProps> = (props) => {
     children,
     square,
     size = SizeButton.XL,
+    disabled,
     theme,
     ...otherProps
   } = props;
@@ -36,9 +38,11 @@ export const Button: FC<ButtonProps> = (props) => {
     [cls[theme]]: true,
     [cls.square]: square,
     [cls[size]]: true,
+    [cls.disabled]: disabled,
   };
   return (
     <button
+      disabled={disabled}
       className={classNames(cls.Button, mods, [className])}
       // className={classNames(cls.button, {[cls[theme]: true}, className])}
       {...otherProps}

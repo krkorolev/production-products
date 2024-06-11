@@ -8,7 +8,6 @@ const MainPages = () => {
     <div>
       <h1>{t("Главная страница")}</h1>
       <Counter />
-      <Input placeholder="Введите текст >" type="text"/>
     </div>
   );
 };

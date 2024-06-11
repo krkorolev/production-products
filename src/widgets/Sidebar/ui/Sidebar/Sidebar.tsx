@@ -23,18 +23,16 @@ import {
   ThemeButton,
 } from "shared/config/ui/Button/Button";
 import ToggleLanguage from "helpers/ToggleLanguage/ToggleLanguage";
-import { AppLink, AppLinkTheme } from "shared/config/ui/AppLink/AppLink";
-import { RoutePath } from "shared/config/routeConfig/routeConfig";
 import { ThemeSwitch } from "shared/config/ui";
 
-import AboutIcon from "shared/assets/icon/clarity_list-outline-badged.svg";
-import MainIcon from "shared/assets/icon/Vector.svg";
+import { SidebarItemList } from "widgets/Sidebar/model/items";
+import SidebarItem from "../SideBarItem/SidebarItem";
 
 interface SidebarProps {
   className?: string;
 }
 
-export const Sidebar = ({ className }: SidebarProps) => {
+export const Sidebar = React.memo(({ className }: SidebarProps) => {
   const [collapsed, setCollapsed] = React.useState(false);
 
   const onToggle = () => {
@@ -48,23 +46,9 @@ export const Sidebar = ({ className }: SidebarProps) => {
       ])}
     >
       <div className={cls.items}>
-        <AppLink
-          className={cls.item}
-          to={RoutePath.main}
-          theme={AppLinkTheme.PRIMARY}
-        >
-          <MainIcon className={cls.icon} />
-          <span className={cls.link}>Главная</span>
-        </AppLink>
-
-        <AppLink
-          className={cls.item}
-          to={RoutePath.about}
-          theme={AppLinkTheme.SECONDARY}
-        >
-          <AboutIcon className={cls.icon} />
-          <span className={cls.link}>О нас</span>
-        </AppLink>
+        {SidebarItemList.map((item) => {
+          return <SidebarItem item={item} collap={collapsed} key={item.path} />;
+        })}
       </div>
       <Button
         data-testid="sidebar-toogle"
@@ -82,4 +66,4 @@ export const Sidebar = ({ className }: SidebarProps) => {
       </div>
     </div>
   );
-};
+});

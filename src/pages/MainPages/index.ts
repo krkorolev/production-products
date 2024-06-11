@@ -1,3 +1,3 @@
-import { MainPagesAsync } from "pages/AboutPages/ui/AboutPages.async";
+import { MainPagesAsync } from "./ui/MainPages.async";
 
 export { MainPagesAsync as MainPages };

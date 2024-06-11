@@ -1,10 +1,15 @@
-import { classNames } from "helpers/classNames/classNames";
-import "./Loading.scss";
+import { classNames } from 'helpers/classNames/classNames';
+import './Loading.scss';
 
-interface LoadingProps {
-  className?: string;
+interface LoaderProps {
+    className?: string;
 }
 
-export const Loading = ({ className }: LoadingProps) => {
-  return <div className={classNames("loader")}></div>;
-};
+export const Loader = ({ className }: LoaderProps) => (
+    <div className={classNames('lds-ellipsis', {}, [className])}>
+        <div />
+        <div />
+        <div />
+        <div />
+    </div>
+);

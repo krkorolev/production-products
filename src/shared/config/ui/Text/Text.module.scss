@@ -1,0 +1,20 @@
+.title {
+  font-size: 24px;
+  color: var(--primary-color);
+}
+
+.text {
+  font-size: 16px;
+  color: var(--secondary-color);
+}
+
+
+.error {
+    .title {
+        color: red;
+      }
+      
+      .text {
+        color: rgb(117, 0, 0);
+      }
+}
